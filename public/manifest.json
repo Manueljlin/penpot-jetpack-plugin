@@ -1,0 +1,11 @@
+{
+  "name": "Jetpack",
+  "host": "http://localhost:4400",
+  "code": "plugin.js",
+  "description": "Optimize, post-process and export SVGs. Tailor made for KDE designers.",
+  "permissions": [
+    "content:read",
+    "content:write",
+    "library:read"
+  ]
+}
