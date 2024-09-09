@@ -1,13 +1,22 @@
+import { PenpotShape } from '@penpot/plugin-types'
+
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 // Type declarations for Plugin (Penpot bridge) -> UI events
 
-export type ThemePluginEvent = {
+export type ThemeChangeEvent = {
   type: 'theme'
-  content: 'light'|'dark'
+  content: 'light' | 'dark'
+}
+
+export type SelectionChangeEvent = {
+  type: 'selection',
+  content: PenpotShape[] | null
 }
 
 export type FromPluginMessageEvent =
-  | ThemePluginEvent
+  | ThemeChangeEvent
+  | SelectionChangeEvent
 
 
 
@@ -20,5 +29,4 @@ export type PokeUIEvent = {
 }
 
 export type FromUiMessageEvent =
-  | { type: 'test', content: string }
   | PokeUIEvent
