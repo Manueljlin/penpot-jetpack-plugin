@@ -1,4 +1,7 @@
-import { PenpotShape } from '@penpot/plugin-types'
+import type {
+  PenpotLibraryColor,
+  PenpotShape
+} from '@penpot/plugin-types'
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -9,14 +12,28 @@ export type ThemeChangeEvent = {
   content: 'light' | 'dark'
 }
 
+
+type EncodedSvg = Uint8Array
+export type SelectionChangeEventPayload = [
+  shape: PenpotShape | null,
+  svg: EncodedSvg | null
+]
 export type SelectionChangeEvent = {
-  type: 'selection',
-  content: PenpotShape[] | null
+  type: 'selection'
+  content: SelectionChangeEventPayload[]
 }
+
+
+export type LibraryColorsSyncEvent = {
+  type: 'send-library-colors'
+  content: PenpotLibraryColor[]
+}
+
 
 export type FromPluginMessageEvent =
   | ThemeChangeEvent
   | SelectionChangeEvent
+  | LibraryColorsSyncEvent
 
 
 
@@ -28,5 +45,12 @@ export type PokeUIEvent = {
   content: string
 }
 
+
+export type RequestLibraryColorsUIEvent = {
+  type: 'request-library-colors'
+}
+
+
 export type FromUiMessageEvent =
   | PokeUIEvent
+  | RequestLibraryColorsUIEvent
